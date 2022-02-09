@@ -137,7 +137,7 @@ export default {
        * No image (rare).
        */
       if (!this.player.trackAlbum?.image) {
-        return
+        this.setAppColours();
       }
 
       /**
