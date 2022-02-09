@@ -180,15 +180,28 @@ export default {
      * Set the stylings of the app based on received colours.
      */
     setAppColours() {
-      document.documentElement.style.setProperty(
-        '--color-text-primary',
-        this.colourPalette.text
-      )
+	
+	  if (!this.player.playing) {
+        document.documentElement.style.setProperty(
+          '--color-text-primary',
+          '#FFFFFF'
+        )
 
-      document.documentElement.style.setProperty(
-        '--colour-background-now-playing',
-        this.colourPalette.background
-      )
+        document.documentElement.style.setProperty(
+          '--colour-background-now-playing',
+          '#000000'
+        )
+	  } else {
+        document.documentElement.style.setProperty(
+          '--color-text-primary',
+          this.colourPalette.text
+        )
+
+        document.documentElement.style.setProperty(
+          '--colour-background-now-playing',
+          this.colourPalette.background
+        )
+	  }
     },
 
     /**
