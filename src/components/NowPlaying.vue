@@ -1,21 +1,13 @@
 <template>
   <div id="app">
-    <div
-      v-if="player.playing"
-      class="now-playing"
-      :class="getNowPlayingClass()"
-    >
+    <div v-if="player.playing" class="now-playing" :class="getNowPlayingClass()">
       <div class="now-playing__cover">
-        <img
-          :src="player.trackAlbum.image"
-          :alt="player.trackTitle"
-          class="now-playing__image"
-        />
+        <img :src="player.trackAlbum.image" :alt="player.trackTitle" class="now-playing__image" />
       </div>
       <div class="now-playing__details">
         <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
         <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
-		<h2 class="now-playing__album" v-text="player.trackAlbum.title"></h2>
+        <h2 class="now-playing__album" v-text="player.trackAlbum.title"></h2>
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
@@ -180,8 +172,8 @@ export default {
      * Set the stylings of the app based on received colours.
      */
     setAppColours() {
-	
-	  if (!this.player.playing) {
+
+      if (!this.player.playing) {
         document.documentElement.style.setProperty(
           '--color-text-primary',
           '#FFFFFF'
@@ -191,7 +183,7 @@ export default {
           '--colour-background-now-playing',
           '#000000'
         )
-	  } else {
+      } else {
         document.documentElement.style.setProperty(
           '--color-text-primary',
           this.colourPalette.text
@@ -201,7 +193,19 @@ export default {
           '--colour-background-now-playing',
           this.colourPalette.background
         )
-	  }
+      }
+    },
+
+    turnOnScreen() {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", "http://localhost:9000/TurnOnScreen", true); // false for synchronous request
+      xmlHttp.send(null);
+    },
+
+    turnOffScreen() {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", "http://localhost:9000/TurnOffScreen", true); // false for synchronous request
+      xmlHttp.send(null);
     },
 
     /**
@@ -222,6 +226,7 @@ export default {
        */
       if (this.playerResponse.is_playing === false) {
         this.playerData = this.getEmptyPlayer()
+        turnOffScreen();
 
         return
       }
@@ -237,6 +242,7 @@ export default {
       /**
        * Store the current active track.
        */
+      turnOnScreen();
       this.playerData = {
         playing: this.playerResponse.is_playing,
         trackArtists: this.playerResponse.item.artists.map(
@@ -290,7 +296,7 @@ export default {
     /**
      * Watch the auth object returned from Spotify.
      */
-    auth: function(oldVal, newVal) {
+    auth: function (oldVal, newVal) {
       if (newVal.status === false) {
         clearInterval(this.pollPlaying)
       }
@@ -299,14 +305,14 @@ export default {
     /**
      * Watch the returned track object.
      */
-    playerResponse: function() {
+    playerResponse: function () {
       this.handleNowPlaying()
     },
 
     /**
      * Watch our locally stored track data.
      */
-    playerData: function() {
+    playerData: function () {
       this.$emit('spotifyTrackUpdated', this.playerData)
 
       this.$nextTick(() => {
@@ -317,4 +323,5 @@ export default {
 }
 </script>
 
-<style src="@/styles/components/now-playing.scss" lang="scss" scoped></style>
+<style src="@/styles/components/now-playing.scss" lang="scss" scoped>
+</style>
