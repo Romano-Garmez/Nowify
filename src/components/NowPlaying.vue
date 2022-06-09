@@ -196,18 +196,6 @@ export default {
       }
     },
 
-    turnOnScreen() {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("GET", "http://localhost:9000/TurnOnScreen", true); // false for synchronous request
-      xmlHttp.send(null);
-    },
-
-    turnOffScreen() {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("GET", "http://localhost:9000/TurnOffScreen", true); // false for synchronous request
-      xmlHttp.send(null);
-    },
-
     /**
      * Handle newly updated Spotify Tracks.
      */
@@ -226,7 +214,12 @@ export default {
        */
       if (this.playerResponse.is_playing === false) {
         this.playerData = this.getEmptyPlayer()
-        turnOffScreen();
+
+        //turn off screen
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", "http://localhost:9000/TurnOffScreen", true); // false for synchronous request
+        xmlHttp.send(null);
+
 
         return
       }
@@ -242,7 +235,13 @@ export default {
       /**
        * Store the current active track.
        */
-      turnOnScreen();
+
+      //turn on screen
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", "http://localhost:9000/TurnOnScreen", true); // false for synchronous request
+      xmlHttp.send(null);
+
+
       this.playerData = {
         playing: this.playerResponse.is_playing,
         trackArtists: this.playerResponse.item.artists.map(
