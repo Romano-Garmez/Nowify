@@ -216,9 +216,9 @@ export default {
         this.playerData = this.getEmptyPlayer()
 
         //turn off screen
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET", "http://localhost:9000/TurnOffScreen", true); // false for synchronous request
-        xmlHttp.send(null);
+        var turnOffRequest = new XMLHttpRequest();
+        turnOffRequest.open("GET", "http://localhost:9000/TurnOffScreen", true); // false for synchronous request
+        turnOffRequest.send(null);
 
 
         return
@@ -237,9 +237,9 @@ export default {
        */
 
       //turn on screen
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("GET", "http://localhost:9000/TurnOnScreen", true); // false for synchronous request
-      xmlHttp.send(null);
+      var turnOnRequest = new XMLHttpRequest();
+      turnOnRequest.open("GET", "http://localhost:9000/TurnOnScreen", true); // false for synchronous request
+      turnOnRequest.send(null);
 
 
       this.playerData = {
