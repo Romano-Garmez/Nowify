@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2d459d5a-509d-49dc-85c1-d0168afd8465/deploy-status)](https://app.netlify.com/sites/peaceful-brahmagupta-4fa075/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2064894d-0007-405d-b116-bbccc9db31e8/deploy-status)](https://app.netlify.com/sites/romangonowify/deploys)
 
 # Nowify
 
