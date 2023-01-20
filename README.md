@@ -78,3 +78,7 @@ Once the environment variables are in, you will have to navigate to your Netlify
 ---
 
 Alternatively, you can clone the repo, compile the code offline, and upload to your own webserver (more advanced users only). If you're considering doing this, I'll assume that you somewhat know you're way around build tools.
+
+---
+
+Original project by Jon Ashcroft can be found here [Original Project](https://github.com/jonashcroft/Nowify)
